@@ -33,16 +33,22 @@ class Liboping < Formula
     url "https://raw.githubusercontent.com/Homebrew/formula-patches/03cf8088210822aa2c1ab544ed58ea04c897d9c4/libtool/configure-pre-0.4.2.418-big_sur.diff"
     sha256 "83af02f2aa2b746bb7225872cab29a253264be49db0ecebb12f841562d9a2923"
   end
+  # Make oping and noping not require sudo
+  patch do
+    url "https://patch-diff.githubusercontent.com/raw/octo/liboping/pull/69.diff"
+    sha256 "941bdaeedaa0946f09e09378c8e36d979b20784d596b0e039d0f419bf5e02472"
+  end
+  # Fix ncurses support
+  patch do
+    url "https://patch-diff.githubusercontent.com/raw/octo/liboping/pull/49.diff"
+    sha256 "ab0cc83466a0bbd900616d99a8ad7ee7403e77ca03fb075569591a1eb58fa748"
+  end
 
   def install
     system "./configure", "--disable-debug",
                           "--disable-dependency-tracking",
                           "--prefix=#{prefix}"
     system "make", "install"
-  end
-
-  def caveats
-    "Run oping and noping sudo'ed in order to avoid the 'Operation not permitted'"
   end
 
   test do
