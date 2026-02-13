@@ -20,10 +20,10 @@ class LastpassCli < Formula
   depends_on "cmake" => :build
   depends_on "docbook-xsl" => :build
   depends_on "pkgconf" => :build
+  depends_on "curl"
   depends_on "openssl@3"
   depends_on "pinentry"
 
-  uses_from_macos "curl"
   uses_from_macos "libxml2"
   uses_from_macos "libxslt"
 
